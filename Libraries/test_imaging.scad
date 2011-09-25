@@ -1,5 +1,5 @@
 include <imaging.scad>
-//include <tetra_160_120.scad>
+include <tetra_160_120.scad>
 //include <tetra_80_60.scad>
 //include <tetra_10_8.scad>
 
