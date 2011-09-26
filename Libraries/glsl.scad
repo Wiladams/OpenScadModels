@@ -45,12 +45,12 @@ function step(edge, x) = x < edge ? 0 : 1;
 // Hermite smoothing between two points
 function _herm2(t) = t*t*(3.0-2.0*t);
 
-function _herm1(range, distance) = _herm2(t = clamp((distance / range), 0.0f, 1.0f));
+function _herm1(range, distance) = _herm2(t = clamp((distance / range), 0.0, 1.0));
 
 function herm(edge0, edge1, x) = _herm1(range=(edge1 - edge0), distance=(x - edge0));
             
 
 function smoothstep(edge0, edge1, x) =
-            (x <= edge0) ? 0.0 :
-	            (x >= edge1) ? 1.0 :
- 	            	   herm(edge0, edge1, x)
+	(x <= edge0) ? 0.0 :
+		((x >= edge1) ? 1.0 :
+			herm(edge0, edge1, x));

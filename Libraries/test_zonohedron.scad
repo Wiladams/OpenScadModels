@@ -4,9 +4,6 @@ echo(Ctau);
 echo("sin60; sin(60)", sin60, sin(60));
 echo("sin72; sin(72)", sin72, sin(72));
 
-echo("blues: ", blues(12));
-echo("reds: ", reds(12));
-echo("Yellows: ", yellows(12));
 
 echo("B1: ", bluestrut(1, 12));
 echo("B2: ", bluestrut(2, 12));
