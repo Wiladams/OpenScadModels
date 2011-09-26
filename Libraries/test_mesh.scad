@@ -1,4 +1,6 @@
 include <imaging.scad>
+include <Mesh_Renderer.scad>
+
 //include <tetra_80_60.scad>
 //include <tetra_160_120.scad>
 include <tbuser_height_map.scad>
@@ -6,8 +8,8 @@ include <tbuser_bitmap.scad>
 
 //dpmm = 3.62205; // == 92 dpi 
 //dpmm = 2.835; // == 72 dpi
-dpmm = 1/0.35;	// == 0.35mm thickness
-//dpmm = 1;
+//dpmm = 1/0.35;	// == 0.35mm thickness
+dpmm = 1;
 //dpmm = .5;
 
 //display_mesh_height([10,10], [dpmm,dpmm], heightmap=C0);
@@ -17,14 +19,14 @@ dpmm = 1/0.35;	// == 0.35mm thickness
 //display_mesh_height([10,10], [dpmm,dpmm], heightmap=C6);
 //display_mesh_height([20,20], [dpmm,dpmm], heightmap=C9);
 
-//display_mesh_height([20,20], [dpmm,dpmm], heightmap=tbuser_height_map, sfactor=5);
+display_mesh_height([20,20], [dpmm,dpmm], heightmap=tbuser_height_map, sfactor=5);
 
 //display_mesh_height([20,20], [dpmm,dpmm], heightmap=tbuser_height_map, sfactor=5);
 
 //display_mesh_image([20,20], [dpmm,dpmm], img=tbuser_height_map, thickness = 5);
 //display_mesh([20,20], [dpmm,dpmm], img=tetra_160_120, thickness = 5);
 //display_mesh([20,20], [dpmm,dpmm], img=tetra_80_60);
-display_mesh_height([32,32], [dpmm,dpmm], heightmap=checker_image);
+//display_mesh_height([32,32], [dpmm,dpmm], heightmap=checker_image);
 
 
 function quadheight(img, s1, t1, s2, t2) = [
@@ -56,6 +58,7 @@ function quadbump(img, s1, t1, s2, t2, thickness=1) =
 
 module display_mesh_height(size, resolution, sfactor=1, heightmap=checker_image ) 
 {
+	base = 4;
 	qcolor = [0.75, 0.75, 0.75];
 
 	width = size[0];
@@ -96,9 +99,21 @@ module display_mesh_height(size, resolution, sfactor=1, heightmap=checker_image 
 				])
 
 			{
+				assign(nquad = [quad, 
+					[[0,0,1], 
+					[0,0,1],
+					[0,0,1],
+					[0,0,1]]])
 				//color(qcolor)
-				polyhedron(points = quad,
-					triangles = [[0,1,2,3]]);
+				DisplayQuadShard(nquad, 
+					thickness=base, 
+					edgefaces=[
+						xcnt==0, 
+						ycnt==yiter-1, 
+						xcnt==xiter-1, 
+						ycnt==0]);
+//				polyhedron(points = quad,
+//					triangles = [[0,1,2,3]]);
 			}
 		}
 	}
