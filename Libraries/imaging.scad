@@ -39,7 +39,7 @@ function image(width, height, maxvalue, values, cpe=3) =
 function image_pixel_normalize(img, pixel) = [pixel[0]/img[2], pixel[1]/img[2], pixel[2]/img[2]];
 
 //function image_getoffset(img, x,y) = ((img[0]*(y))+x)*img[4];
-function image_getoffset(img, x,y) = ((img[0]*(img[1]-1-y))+x)*img[4];
+function image_getoffset(img, xy) = ((img[0]*(img[1]-1-xy[1]))+xy[0])*img[4];
 
 function _image_getpixel_1(img, offset) = [img[3][offset],img[3][offset],img[3][offset]];
 function _image_getpixel_2(img, offset) = [img[3][offset],img[3][offset+1]];
@@ -53,10 +53,11 @@ function _image_getpixel(img, offset) =
 				(img[4] == 2) ? _image_getpixel_2(img,offset) : [0];
 
 
-function image_getpixel(img, x, y) = _image_getpixel(img, image_getoffset(img, x,y));
+function image_getpixel(img, xy) = _image_getpixel(img, image_getoffset(img, xy));
 
- 
-function image_gettexel(img, s, t, r=0, q=1) = image_pixel_normalize(img, image_getpixel(img, map_to_array(img[0],s), map_to_array(img[1],t)));
+function image_gettexelcoords(img, s, t) = [map_to_array(img[0],s), map_to_array(img[1],t)];
+
+function image_gettexel(img, s, t, r=0, q=1) = image_pixel_normalize(img, image_getpixel(img, image_gettexelcoords(img,s,t)));
 
 
 /*

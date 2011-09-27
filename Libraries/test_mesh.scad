@@ -5,10 +5,13 @@ include <Mesh_Renderer.scad>
 //include <tetra_160_120.scad>
 include <tbuser_height_map.scad>
 include <tbuser_bitmap.scad>
+include <3dtech0.scad>
 
 //dpmm = 3.62205; // == 92 dpi 
 //dpmm = 2.835; // == 72 dpi
+//dpmm = 1/0.40;	// == 0.40mm thickness
 //dpmm = 1/0.35;	// == 0.35mm thickness
+//dpmm = 1/0.25;	// == 0.25mm thickness
 dpmm = 1;
 //dpmm = .5;
 
@@ -19,9 +22,9 @@ dpmm = 1;
 //display_mesh_height([10,10], [dpmm,dpmm], heightmap=C6);
 //display_mesh_height([20,20], [dpmm,dpmm], heightmap=C9);
 
-display_mesh_height([20,20], [dpmm,dpmm], heightmap=tbuser_height_map, sfactor=5);
-
 //display_mesh_height([20,20], [dpmm,dpmm], heightmap=tbuser_height_map, sfactor=5);
+
+display_mesh_height([32,32], [dpmm,dpmm], heightmap=3dtech0, sfactor=16);
 
 //display_mesh_image([20,20], [dpmm,dpmm], img=tbuser_height_map, thickness = 5);
 //display_mesh([20,20], [dpmm,dpmm], img=tetra_160_120, thickness = 5);
@@ -79,7 +82,13 @@ module display_mesh_height(size, resolution, sfactor=1, heightmap=checker_image 
 			assign(x1frac = xcnt/yiter)
 			assign(x2frac = (xcnt+1)/xiter)
 
-			assign(qheight = quadheight(heightmap, x1frac, y1frac, x2frac, y2frac))
+			assign(x = map_to_array(heightmap[0],x1frac))
+			assign(y = map_to_array(heightmap[1],y1frac))
+			assign(z = heightmap[3][0])
+			//assign(h1 = image_gettexel(heightmap, x1frac,y1frac))
+			//assign(h1 = image_getpixel(heightmap, x1frac,y1frac))
+			//assign(h1 = image_gettexelcoords(heightmap,x1frac,y1frac))
+			//assign(qheight = quadheight(heightmap, x1frac, y1frac, x2frac, y2frac))
 			//assign(qcolor = quadtexture(heightmap, x1frac, y1frac, x2frac, y2frac))
 
 			assign(x1=xcnt*cellwidth)
@@ -87,10 +96,15 @@ module display_mesh_height(size, resolution, sfactor=1, heightmap=checker_image 
 			assign(x2=(xcnt+1)*cellwidth)
 			assign(y2=(ycnt+1)*cellheight)
 
-			assign(z1=qheight[0][0]*sfactor)
-			assign(z2=qheight[1][0]*sfactor)
-			assign(z3=qheight[2][0]*sfactor)
-			assign(z4=qheight[3][0]*sfactor)
+//			assign(z1=qheight[0][0]*sfactor)
+//			assign(z2=qheight[1][0]*sfactor)
+//			assign(z3=qheight[2][0]*sfactor)
+//			assign(z4=qheight[3][0]*sfactor)
+
+			assign(z1=0)
+			assign(z2=0)
+			assign(z3=0)
+			assign(z4=0)
 			assign(quad=[
 				[x1, y1, z1],
 				[x1, y2, z2],
@@ -99,6 +113,7 @@ module display_mesh_height(size, resolution, sfactor=1, heightmap=checker_image 
 				])
 
 			{
+echo(x,y,z);
 				assign(nquad = [quad, 
 					[[0,0,1], 
 					[0,0,1],
