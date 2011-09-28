@@ -5,7 +5,7 @@ include <Mesh_Renderer.scad>
 //include <tetra_160_120.scad>
 include <tbuser_height_map.scad>
 include <tbuser_bitmap.scad>
-include <3dtech0.scad>
+include <3dtech0_3.scad>
 
 //dpmm = 3.62205; // == 92 dpi 
 //dpmm = 2.835; // == 72 dpi
@@ -15,21 +15,19 @@ include <3dtech0.scad>
 dpmm = 1;
 //dpmm = .5;
 
-//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C0);
-//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C1);
-//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C3);
-//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C5);
-//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C6);
-//display_mesh_height([20,20], [dpmm,dpmm], heightmap=C9);
+// Using bitmaps
+test_text();
+
+//shell_extrude_height_map([20,20], [dpmm,dpmm], heightmap=tbuser_height_map, sfactor = 10, solid=true);
+//shell_extrude_height_map([32,32], [dpmm,dpmm], heightmap=checker_image);
 
 //display_mesh_height([20,20], [dpmm,dpmm], heightmap=tbuser_height_map, sfactor=5);
 
-display_mesh_height([32,32], [dpmm,dpmm], heightmap=3dtech0, sfactor=16);
+//shell_extrude_color_map([48,48], [dpmm,dpmm], heightmap=3dtech0_3, sfactor=16, solid=true);
 
-//display_mesh_image([20,20], [dpmm,dpmm], img=tbuser_height_map, thickness = 5);
-//display_mesh([20,20], [dpmm,dpmm], img=tetra_160_120, thickness = 5);
-//display_mesh([20,20], [dpmm,dpmm], img=tetra_80_60);
-//display_mesh_height([32,32], [dpmm,dpmm], heightmap=checker_image);
+//display_mesh([20,20], [dpmm,dpmm], heightmap=tetra_160_120, thickness = 5);
+//display_mesh([20,20], [dpmm,dpmm], heightmap=tetra_80_60);
+
 
 
 function quadheight(img, s1, t1, s2, t2) = [
@@ -59,129 +57,55 @@ function quadbump(img, s1, t1, s2, t2, thickness=1) =
 	gtexgray(quadtexture(img, s1, t1, s2, t2), thickness);
 
 
-module display_mesh_height(size, resolution, sfactor=1, heightmap=checker_image ) 
+
+
+module print_text(text, cnt, size=[8,8], resolution=[1,1], solid=false)
 {
-	base = 4;
-	qcolor = [0.75, 0.75, 0.75];
+joinfactor = 0.001;
 
-	width = size[0];
-	height = size[1];
-
-	cellwidth = 1/dpmm;
-	cellheight = 1/dpmm;
-
-	yiter = height/cellheight;
-	xiter = width/cellwidth;
-
-	for (ycnt =[0:yiter-1])
+	for (c=[0:cnt-1])
 	{
-		assign(y1frac = ycnt/yiter)
-		assign(y2frac = (ycnt+1)/yiter)
-		for(xcnt=[0:xiter-1])
-		{
-			assign(x1frac = xcnt/yiter)
-			assign(x2frac = (xcnt+1)/xiter)
-
-			assign(x = map_to_array(heightmap[0],x1frac))
-			assign(y = map_to_array(heightmap[1],y1frac))
-			assign(z = heightmap[3][0])
-			//assign(h1 = image_gettexel(heightmap, x1frac,y1frac))
-			//assign(h1 = image_getpixel(heightmap, x1frac,y1frac))
-			//assign(h1 = image_gettexelcoords(heightmap,x1frac,y1frac))
-			//assign(qheight = quadheight(heightmap, x1frac, y1frac, x2frac, y2frac))
-			//assign(qcolor = quadtexture(heightmap, x1frac, y1frac, x2frac, y2frac))
-
-			assign(x1=xcnt*cellwidth)
-			assign(y1=ycnt*cellheight)
-			assign(x2=(xcnt+1)*cellwidth)
-			assign(y2=(ycnt+1)*cellheight)
-
-//			assign(z1=qheight[0][0]*sfactor)
-//			assign(z2=qheight[1][0]*sfactor)
-//			assign(z3=qheight[2][0]*sfactor)
-//			assign(z4=qheight[3][0]*sfactor)
-
-			assign(z1=0)
-			assign(z2=0)
-			assign(z3=0)
-			assign(z4=0)
-			assign(quad=[
-				[x1, y1, z1],
-				[x1, y2, z2],
-				[x2, y2, z3],
-				[x2, y1, z4]
-				])
-
-			{
-echo(x,y,z);
-				assign(nquad = [quad, 
-					[[0,0,1], 
-					[0,0,1],
-					[0,0,1],
-					[0,0,1]]])
-				//color(qcolor)
-				DisplayQuadShard(nquad, 
-					thickness=base, 
-					edgefaces=[
-						xcnt==0, 
-						ycnt==yiter-1, 
-						xcnt==xiter-1, 
-						ycnt==0]);
-//				polyhedron(points = quad,
-//					triangles = [[0,1,2,3]]);
-			}
-		}
+		translate([c*size[0], 0, 0])
+		shell_extrude_height_map([size[0]+joinfactor,size[1]+joinfactor],resolution, heightmap=text[c], solid=solid);
 	}
 }
 
-
-module display_mesh_image(size, resolution, thickness=1, img=checker_image ) 
+module test_text()
 {
-	width = size[0];
-	height = size[1];
+//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C0);
+//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C1);
+//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C3);
+//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C5);
+//display_mesh_height([10,10], [dpmm,dpmm], heightmap=C6);
+//shell_extrude_height_map([20,20], [dpmm,dpmm], heightmap=C9, solid=true);
 
-	cellwidth = 1/dpmm;
-	cellheight = 1/dpmm;
+rowheight = 10;
 
-	yiter = height/cellheight;
-	xiter = width/cellwidth;
+charsize=[8, 8];
 
-echo("CellSize: ", cellwidth, cellheight);
-echo("Iteration: ", xiter, yiter);
+//translate([0,0*rowheight, 0])
+//print_text(text=[CW], cnt=1, 
+//	size=[60,60], solid=true);
+//
+translate([0,0*rowheight, 0])
+print_text(text=[CW,CO,CR,CL,CD,Cbang], cnt=5, 
+	size=charsize, solid=true);
 
-	for (ycnt =[0:yiter-1])
-	{
-		assign(y1frac = ycnt/yiter)
-		assign(y2frac = (ycnt+1)/yiter)
-		for(xcnt=[0:xiter-1])
-		{
-			assign(x1frac = xcnt/yiter)
-			assign(x2frac = (xcnt+1)/xiter)
+translate([0,1*rowheight, 0])
+print_text(text=[CH,CE,CL,CL,CO], cnt=5, 
+	size=charsize, solid=true);
 
-			assign(qtex = quadtexture(img, x1frac, y1frac, x2frac, y2frac))
-			assign(qgray = qtexgray(qtex,thickness))
-			assign(qcolor = quadavg(qtex))
 
-			assign(x1=xcnt*cellwidth)
-			assign(y1=ycnt*cellheight)
-			assign(x2=(xcnt+1)*cellwidth)
-			assign(y2=(ycnt+1)*cellheight)
-			assign(z1=qgray[0])
-			assign(z2=qgray[1])
-			assign(z3=qgray[2])
-			assign(z4=qgray[3])
-			assign(quad=[
-				[x1, y1, z1],
-				[x2, y1, z2],
-				[x2, y2, z3],
-				[x1, y2, z4]])
-
-			{
-//echo(quad);
-				color(qcolor)
-				polyhedron(points = quad,
-					triangles = [[0,1,2,3]]);
-			}
-		}
-	}
+//translate([0,1*rowheight, 0])
+//print_text(text=[C0,C1,C2,C3,C4,C5,C6,C7,C8,C9], cnt=10, 
+//	size=charsize, solid=true);
+//
+//
+//translate([0,2*rowheight, 0])
+//print_text(text=[CA,CB,CC,CD,CE,CF,CG,CH,CI,CJ,CK,CL,CM,CN,CO,CP,CQ,CR,CS,CT,CU,CV,CW,CX,CY,CZ], cnt=26,
+//	size=charsize, solid=true);
+//
+//translate([0,3*rowheight, 0])
+//print_text(text=[Ca,Cb,Cc,Cd,Ce,Cf,Cg,Ch,Ci,Cj,Ck,Cl,Cm,Cn,Co,Cp,Cq,Cr,Cs,Ct,Cu,Cv,Cw,Cx,Cy,Cz], cnt=26,
+//	size=charsize, solid=true);
 }

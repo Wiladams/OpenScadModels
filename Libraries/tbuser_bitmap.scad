@@ -5,6 +5,16 @@ http://tonybuser.com
 http://creativecommons.org/licenses/by/3.0/
 */
 
+/*
+Modified: 27092011
+William A Adams
+http://williamaadams.wordpress.com/
+http://www.thingiverse.com/WilliamAAdams
+
+I modified from the original file to conform to a
+height map format.
+*/
+
 include <imaging.scad> 
 
 C0 = image(width=8,height=8,maxvalue=1, values=
@@ -45,14 +55,14 @@ C2 = image(width=8,height=8,maxvalue=1, values=
 
 C3 = image(width=8,height=8,maxvalue=3, values=
 			[
-			0,0,0,0,0,0,0,0,
-			0,1,3,3,3,3,1,0,
-			0,0,0,1,3,1,0,0,
-			0,0,1,3,1,0,0,0,
-			0,0,0,1,3,1,0,0,
-			0,1,2,0,1,3,1,0,
-			0,0,3,3,3,3,1,0,
-			0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0, 
+0,1,1,1,1,1,1,0,
+0,0,0,0,1,1,0,0,
+0,0,0,1,1,0,0,0,
+0,0,0,0,1,1,0,0,
+0,1,1,0,0,1,1,0,
+0,0,1,1,1,1,0,0,
+0,0,0,0,0,0,0,0
 		], cpe=1);
 
 
@@ -128,9 +138,9 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,0,0,0
 			], cpe=1);
 
-/*
-	} else if (char == "A") {
-		bitmap([
+
+CA = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,1,1,1,1,0,0,
@@ -139,9 +149,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,1,1,1,1,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "B") {
-		bitmap([
+		], cpe=1);
+
+CB = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -150,9 +161,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "C") {
-		bitmap([
+		], cpe=1);
+
+CC = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -161,9 +173,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "D") {
-		bitmap([
+		], cpe=1);
+
+CD = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,0,0,0,
 			0,1,1,0,1,1,0,0,
@@ -172,9 +185,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,1,1,0,0,
 			0,1,1,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "E") {
-		bitmap([
+		], cpe=1);
+
+CE = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,1,1,0,0,0,0,0,
@@ -183,9 +197,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "F") {
-		bitmap([
+		], cpe=1);
+
+CF = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,1,1,0,0,0,0,0,
@@ -194,9 +209,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "G") {
-		bitmap([
+		], cpe=1);
+
+CG = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,1,0,
 			0,1,1,0,0,0,0,0,
@@ -205,9 +221,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "H") {
-		bitmap([
+		], cpe=1);
+
+CH = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
@@ -216,9 +233,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "I") {
-		bitmap([
+		], cpe=1);
+
+CI = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,1,1,0,0,0,
@@ -227,9 +245,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "J") {
-		bitmap([
+		], cpe=1);
+
+CJ = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,1,1,1,0,
 			0,0,0,0,0,1,1,0,
@@ -238,9 +257,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "K") {
-		bitmap([
+		], cpe=1);
+
+CK = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,1,1,0,0,
@@ -249,9 +269,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,1,1,0,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "L") {
-		bitmap([
+		], cpe=1);
+
+CL = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
@@ -260,9 +281,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "M") {
-		bitmap([
+		], cpe=1);
+
+CM = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,0,1,1,
 			0,1,1,1,0,1,1,1,
@@ -271,9 +293,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,1,1,
 			0,1,1,0,0,0,1,1,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "N") {
-		bitmap([
+		], cpe=1);
+
+CN = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,1,0,1,1,0,
@@ -282,9 +305,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,1,1,1,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "O") {
-		bitmap([
+		], cpe=1);
+
+CO = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -293,9 +317,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "P") {
-		bitmap([
+		], cpe=1);
+
+CP = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -304,9 +329,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "Q") {
-		bitmap([
+		], cpe=1); 
+
+CQ = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -315,9 +341,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,1,1,1,0,0,
 			0,0,1,1,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "R") {
-		bitmap([
+		], cpe=1);
+
+CR = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -326,9 +353,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,1,1,0,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "S") {
-		bitmap([
+		], cpe=1);
+
+CS = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,1,1,0,0,0,0,0,
@@ -337,9 +365,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,1,1,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "T") {
-		bitmap([
+		], cpe=1);
+
+CT = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,1,1,0,0,0,
@@ -348,9 +377,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "U") {
-		bitmap([
+		], cpe=1);
+
+CU = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
@@ -359,9 +389,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "V") {
-		bitmap([
+		], cpe=1);
+
+CV = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
@@ -370,20 +401,22 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,1,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "W") {
-		bitmap([
-			0,0,0,0,0,0,0,0,
-			0,1,1,0,0,0,1,1,
-			0,1,1,0,0,0,1,1,
-			0,1,1,0,1,0,1,1,
-			0,1,1,1,1,1,1,1,
-			0,1,1,1,0,1,1,1,
-			0,1,1,0,0,0,1,1,
-			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "X") {
-		bitmap([
+		], cpe=1);
+
+CW = image(width=9,height=8,maxvalue=1, values=
+[
+			0,0,0,0,0,0,0,0,0,
+			0,1,1,0,0,0,1,1,0,
+			0,1,1,0,0,0,1,1,0,
+			0,1,1,0,1,0,1,1,0,
+			0,1,1,1,1,1,1,1,0,
+			0,1,1,1,0,1,1,1,0,
+			0,1,1,0,0,0,1,1,0,
+			0,0,0,0,0,0,0,0,0
+		], cpe=1);
+
+CX = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
@@ -392,9 +425,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "Y") {
-		bitmap([
+		], cpe=1);
+
+CY = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
@@ -403,9 +437,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "Z") {
-		bitmap([
+		], cpe=1);
+
+CZ = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,1,1,0,0,
@@ -414,9 +449,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "a") {
-		bitmap([
+		], cpe=1);
+
+Ca = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
@@ -425,9 +461,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "b") {
-		bitmap([
+		], cpe=1);
+
+Cb = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
@@ -436,9 +473,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "c") {
-		bitmap([
+		], cpe=1);
+
+Cc = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
@@ -447,9 +485,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "d") {
-		bitmap([
+		], cpe=1);
+
+Cd = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,0,1,1,0,
@@ -458,9 +497,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "e") {
-		bitmap([
+		], cpe=1);
+
+Ce = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
@@ -469,9 +509,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "f") {
-		bitmap([
+		], cpe=1);
+
+Cf = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,1,1,1,0,
 			0,0,0,1,1,0,0,0,
@@ -480,9 +521,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "g") {
-		bitmap([
+		], cpe=1);
+
+Cg = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
@@ -491,9 +533,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,0,1,1,0,
 			0,1,1,1,1,1,0,0
-		], block_size, height, 8);
-	} else if (char == "h") {
-		bitmap([
+		], cpe=1);
+
+Ch = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
@@ -502,9 +545,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "i") {
-		bitmap([
+		], cpe=1);
+
+Ci = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -513,9 +557,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "j") {
-		bitmap([
+		], cpe=1);
+
+Cj = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,0,0,0,0,
@@ -524,9 +569,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,0,1,1,0,
 			0,0,1,1,1,1,0,0
-		], block_size, height, 8);
-	} else if (char == "k") {
-		bitmap([
+		], cpe=1);
+
+Ck = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
@@ -535,9 +581,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,1,1,0,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "l") {
-		bitmap([
+		], cpe=1);
+
+Cl = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
@@ -546,9 +593,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "m") {
-		bitmap([
+		], cpe=1);
+
+Cm = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
@@ -557,9 +605,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,1,0,1,1,
 			0,1,1,0,0,0,1,1,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "n") {
-		bitmap([
+		], cpe=1);
+
+Cn = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,0,0,
@@ -568,9 +617,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "o") {
-		bitmap([
+		], cpe=1);
+
+Co = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
@@ -579,9 +629,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "p") {
-		bitmap([
+		], cpe=1);
+
+Cp = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,0,0,
@@ -590,9 +641,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,1,1,1,0,0,
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "q") {
-		bitmap([
+		], cpe=1);
+
+Cq = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,1,0,
@@ -601,9 +653,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,0,1,1,0
-		], block_size, height, 8);
-	} else if (char == "r") {
-		bitmap([
+		], cpe=1);
+
+Cr = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,0,0,
@@ -612,9 +665,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "s") {
-		bitmap([
+		], cpe=1);
+
+Cs = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,1,0,
@@ -623,9 +677,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,1,1,0,
 			0,1,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "t") {
-		bitmap([
+		], cpe=1);
+
+Ct = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,1,1,1,1,1,1,0,
@@ -634,9 +689,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "u") {
-		bitmap([
+		], cpe=1);
+
+Cu = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
@@ -645,9 +701,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "v") {
-		bitmap([
+		], cpe=1);
+
+Cv = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
@@ -656,9 +713,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,1,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "w") {
-		bitmap([
+		], cpe=1);
+
+Cw = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,0,1,1,
@@ -667,9 +725,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,1,1,0,
 			0,0,1,1,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "x") {
-		bitmap([
+		], cpe=1);
+
+Cx = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
@@ -678,9 +737,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else if (char == "y") {
-		bitmap([
+		], cpe=1);
+
+Cy = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
@@ -689,9 +749,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,1,1,0,0,
 			0,1,1,1,1,0,0,0
-		], block_size, height, 8);
-	} else if (char == "z") {
-		bitmap([
+		], cpe=1);
+
+Cz = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
@@ -700,9 +761,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,0,0,0,0,
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "+") {
-		bitmap([
+		], cpe=1);
+
+Cplus = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
@@ -711,9 +773,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "-") {
-		bitmap([
+		], cpe=1);
+
+Cminus = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -722,9 +785,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == ":") {
-		bitmap([
+		], cpe=1);
+
+Ccolon = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
@@ -733,9 +797,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == ".") {
-		bitmap([
+		], cpe=1);
+
+Cperiod = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -744,9 +809,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == ",") {
-		bitmap([
+		], cpe=1);
+
+Ccomma = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -755,9 +821,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,1,1,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "?") {
-		bitmap([
+		], cpe=1);
+
+Cquestion = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -766,9 +833,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "=") {
-		bitmap([
+		], cpe=1);
+
+Cequal = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,1,1,1,1,1,1,0,
@@ -777,9 +845,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "*") {
-		bitmap([
+		], cpe=1);
+
+Casterisk = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,0,1,1,1,1,0,0,
@@ -788,9 +857,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "!") {
-		bitmap([
+		], cpe=1);
+
+Cbang = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
@@ -799,9 +869,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "''") {
-		bitmap([
+		], cpe=1);
+
+Cdquote = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,0,1,1,0,
@@ -810,9 +881,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "#") {
-		bitmap([
+		], cpe=1);
+
+Cpound = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			1,1,1,1,1,1,1,1,
@@ -821,9 +893,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			1,1,1,1,1,1,1,1,
 			0,1,1,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "$") {
-		bitmap([
+		], cpe=1);
+
+Cdollar = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,1,1,0,0,0,
 			0,0,1,1,1,1,1,0,
 			0,1,1,0,0,0,0,0,
@@ -832,9 +905,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,1,1,1,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "%") {
-		bitmap([
+		], cpe=1);
+
+Cpercent = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,1,1,0,
 			0,1,1,0,1,1,0,0,
@@ -843,9 +917,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,1,1,0,
 			0,1,0,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "&") {
-		bitmap([
+		], cpe=1);
+
+Campersand = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,1,1,1,0,0,
 			0,0,1,1,0,1,1,0,
 			0,0,0,1,1,1,0,0,
@@ -854,9 +929,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,1,1,1,0,
 			0,0,1,1,1,0,1,1,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "@") {
-		bitmap([
+		], cpe=1);
+
+Cat = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,1,1,0,0,1,1,0,
@@ -865,9 +941,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,0,1,1,1,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "'") {
-		bitmap([
+		], cpe=1);
+
+Csquote = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
@@ -876,9 +953,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "(") {
-		bitmap([
+		], cpe=1);
+
+Clparen = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,1,1,1,0,0,
 			0,0,1,1,1,0,0,0,
@@ -887,9 +965,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,1,0,0,0,
 			0,0,0,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == ")") {
-		bitmap([
+		], cpe=1);
+
+Crparen = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,0,0,0,
 			0,0,0,1,1,1,0,0,
@@ -898,9 +977,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,1,0,0,
 			0,0,1,1,1,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "<") {
-		bitmap([
+		], cpe=1);
+
+Cless = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,1,1,0,0,
 			0,0,0,1,1,0,0,0,
@@ -909,9 +989,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,1,1,0,0,
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == ">") {
-		bitmap([
+		], cpe=1);
+
+Cgreater = image(width=8,height=8,maxvalue=1, values=
+[
 			0,1,1,0,0,0,0,0,
 			0,0,1,1,0,0,0,0,
 			0,0,0,1,1,0,0,0,
@@ -920,9 +1001,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "[") {
-		bitmap([
+		], cpe=1);
+
+Clbracket = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,1,1,0,0,0,0,
@@ -931,9 +1013,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,1,1,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "]") {
-		bitmap([
+		], cpe=1);
+
+Crbracket = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,1,1,0,0,
@@ -942,9 +1025,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,1,1,0,0,
 			0,0,1,1,1,1,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "/") {
-		bitmap([
+		], cpe=1);
+
+Cslash = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,1,1,0,0,
@@ -953,9 +1037,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,1,1,0,0,0,0,0,
 			0,1,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "\\") {
-		bitmap([
+		], cpe=1);
+
+Cbackslash = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,1,1,0,0,0,0,0,
 			0,0,1,1,0,0,0,0,
@@ -964,9 +1049,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,1,1,0,
 			0,0,0,0,0,0,1,0,
 			0,0,0,0,0,0,0,0
-		], block_size, height, 8);
-	} else 	if (char == "_") {
-		bitmap([
+		], cpe=1);
+
+Cunder = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -975,9 +1061,10 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			1,1,1,1,1,1,1,1
-		], block_size, height, 8);
-	} else 	if (char == "|") {
-		bitmap([
+		], cpe=1);
+
+Cpipe = image(width=8,height=8,maxvalue=1, values=
+[
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
@@ -986,21 +1073,4 @@ C9 = image(width=8,height=8,maxvalue=1, values=
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0,
 			0,0,0,1,1,0,0,0
-		], block_size, height, 8);
-	} else {
-		echo("Invalid Character: ", char);
-	}
-
-}
-*/
-
-//module 8bit_str(chars, char_count, block_size, height) {
-//	echo(str("Total Width: ", block_size * 8 * char_count, "mm"));
-//	union() {
-//		for (count = [0:char_count-1]) {
-//			translate(v = [0, count * block_size * 8, 0]) {
-//				8bit_char(chars[count], block_size, height);
-//			}
-//		}
-//	}
-//}
+		], cpe=1);

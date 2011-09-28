@@ -88,3 +88,164 @@ module DisplayQuadShard(quad,
 			edgefaces = edgefaces);
 	}
 }
+
+
+module shell_extrude_height_map(size, resolution, sfactor=1, heightmap=checker_image, solid=false ) 
+{
+	base = 4;
+	qcolor = [0.75, 0.75, 0.75];
+
+	// What is the overall size of the mesh
+	width = size[0];
+	height = size[1];
+
+	// How big is each quad in the mesh
+	cellwidth = 1/dpmm;
+	cellheight = 1/dpmm;
+
+	// How many iterations
+	yiter = height/cellheight;
+	xiter = width/cellwidth;
+
+	// Pull out the height map values so we don't have to 
+	// do array lookups later, as sometimes the array 
+	// will be copied.
+	hmwidth = heightmap[0];
+	hmheight = heightmap[1];
+	hmsize = [hmwidth, hmheight];
+	hmvalues = heightmap[3];
+
+	for (ycnt =[0:yiter-1])
+	{
+		assign(y1frac = ycnt/yiter)
+		assign(y2frac = (ycnt+1)/yiter)
+		for(xcnt=[0:xiter-1])
+		{
+			assign(x1frac = xcnt/xiter)
+			assign(x2frac = (xcnt+1)/xiter)
+
+			assign(x1=xcnt*cellwidth)
+			assign(y1=ycnt*cellheight)
+			assign(x2=(xcnt+1)*cellwidth)
+			assign(y2=(ycnt+1)*cellheight)
+			
+			
+			assign(z1 = hmvalues[heightfield_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y1frac))])
+			assign(z2 = hmvalues[heightfield_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y2frac))])
+			assign(z3 = hmvalues[heightfield_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y2frac))])
+			assign(z4 = hmvalues[heightfield_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y1frac))])
+			
+			assign(quad=[
+			[x1, y1, z1],
+			[x1, y2, z2],
+			[x2, y2, z3],
+			[x2, y1, z4]
+			])
+			{
+				//color(qcolor)
+				if (solid)
+				{
+					assign(nquad = [quad, 
+					[[0,0,1], 
+					[0,0,1],
+					[0,0,1],
+					[0,0,1]]])
+					DisplayQuadShard(nquad, 
+					thickness=base, 
+					edgefaces=[
+					xcnt==0, 
+					ycnt==yiter-1, 
+					xcnt==xiter-1, 
+					ycnt==0]);
+				} else
+				{
+					polyhedron(points = quad, triangles = [[0,1,2,3]]);
+				}
+			}
+		}
+	}
+}
+
+module shell_extrude_color_map(size, resolution, sfactor=1, heightmap=checker_image, solid=false ) 
+{
+	base = 4;
+	qcolor = [0.75, 0.75, 0.75];
+
+	// What is the overall size of the mesh
+	width = size[0];
+	height = size[1];
+
+	// How big is each quad in the mesh
+	cellwidth = 1/dpmm;
+	cellheight = 1/dpmm;
+
+	// How many iterations
+	yiter = height/cellheight;
+	xiter = width/cellwidth;
+
+	// Pull out the height map values so we don't have to 
+	// do array lookups later, as sometimes the array 
+	// will be copied.
+	hmwidth = heightmap[0];
+	hmheight = heightmap[1];
+	hmsize = [hmwidth, hmheight];
+	hmvalues = heightmap[3];
+	hmmaxvalue = heightmap[2];
+
+echo(size);
+echo(hmsize);
+
+	for (ycnt =[0:yiter-1])
+	{
+		assign(y1frac = ycnt/yiter)
+		assign(y2frac = (ycnt+1)/yiter)
+		for(xcnt=[0:xiter-1])
+		{
+			assign(x1frac = xcnt/xiter)
+			assign(x2frac = (xcnt+1)/xiter)
+
+			assign(x1=xcnt*cellwidth)
+			assign(y1=ycnt*cellheight)
+			assign(x2=(xcnt+1)*cellwidth)
+			assign(y2=(ycnt+1)*cellheight)
+			
+			assign(zoff1 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y1frac), cpe=3))
+			assign(zoff2 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y2frac), cpe=3))
+			assign(zoff3 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y2frac), cpe=3))
+			assign(zoff4 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y1frac), cpe=3))
+
+			assign(z1 = sfactor*hmvalues[zoff1]/hmmaxvalue)
+			assign(z2 = sfactor*hmvalues[zoff2]/hmmaxvalue)
+			assign(z3 = sfactor*hmvalues[zoff3]/hmmaxvalue)
+			assign(z4 = sfactor*hmvalues[zoff4]/hmmaxvalue)
+
+			assign(quad=[
+			[x1, y1, z1],
+			[x1, y2, z2],
+			[x2, y2, z3],
+			[x2, y1, z4]
+			])
+			{
+				//color(qcolor)
+				if (solid)
+				{
+					assign(nquad = [quad, 
+					[[0,0,1], 
+					[0,0,1],
+					[0,0,1],
+					[0,0,1]]])
+					DisplayQuadShard(nquad, 
+					thickness=base, 
+					edgefaces=[
+					xcnt==0, 
+					ycnt==yiter-1, 
+					xcnt==xiter-1, 
+					ycnt==0]);
+				} else
+				{
+					polyhedron(points = quad, triangles = [[0,1,2,3]]);
+				}
+			}
+		}
+	}
+}
