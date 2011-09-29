@@ -237,10 +237,10 @@ echo(hmsize);
 					DisplayQuadShard(nquad, 
 					thickness=base, 
 					edgefaces=[
-					xcnt==0, 
-					ycnt==yiter-1, 
-					xcnt==xiter-1, 
-					ycnt==0]);
+						xcnt==0, 
+						ycnt==yiter-1, 
+						xcnt==xiter-1, 
+						ycnt==0]);
 				} else
 				{
 					polyhedron(points = quad, triangles = [[0,1,2,3]]);

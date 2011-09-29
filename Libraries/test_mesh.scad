@@ -66,12 +66,14 @@ joinfactor = 0.001;
 	for (c=[0:cnt-1])
 	{
 		translate([c*size[0], 0, 0])
-		shell_extrude_height_map([size[0]+joinfactor,size[1]+joinfactor],resolution, heightmap=text[c], solid=solid);
+		shell_extrude_height_map([size[0],size[1]],resolution, heightmap=text[c], solid=solid);
 	}
 }
 
 module test_text()
 {
+joinfactor = 0.001;
+
 //display_mesh_height([10,10], [dpmm,dpmm], heightmap=C0);
 //display_mesh_height([10,10], [dpmm,dpmm], heightmap=C1);
 //display_mesh_height([10,10], [dpmm,dpmm], heightmap=C3);
@@ -83,17 +85,29 @@ rowheight = 10;
 
 charsize=[8, 8];
 
+difference()
+{
+color([1,0,0])
+translate([0,0*rowheight, 0])
+print_text(text=[Cheart], cnt=1, 
+	size=[12,12], solid=true);
+
+	translate([-joinfactor, -joinfactor, 0])
+	cube(size=[60+joinfactor*2,60+joinfactor*2,4+joinfactor*2]);
+}
+
+
 //translate([0,0*rowheight, 0])
 //print_text(text=[CW], cnt=1, 
 //	size=[60,60], solid=true);
 //
-translate([0,0*rowheight, 0])
-print_text(text=[CW,CO,CR,CL,CD,Cbang], cnt=5, 
-	size=charsize, solid=true);
+//translate([0,0*rowheight, 0])
+//print_text(text=[CW,CO,CR,CL,CD,Cbang], cnt=5, 
+//	size=charsize, solid=true);
 
-translate([0,1*rowheight, 0])
-print_text(text=[CH,CE,CL,CL,CO], cnt=5, 
-	size=charsize, solid=true);
+//translate([0,1*rowheight, 0])
+//print_text(text=[CH,CE,CL,CL,CO], cnt=5, 
+//	size=charsize, solid=true);
 
 
 //translate([0,1*rowheight, 0])
