@@ -14,7 +14,7 @@ module DisplayTriShard(shard)
 		points=[
 			shard[0][0], shard[0][1],shard[0][2], // Top
 			shard[1][0], shard[1][1], shard[1][2]], // Bottom
-		triangles=[
+		faces=[
 			[0,2,1],
 			[3,4,5],
 			[1,5,4],
@@ -35,7 +35,7 @@ module displayquad(top)
 		points = [
 			top[0], top[1], top[2],
 			bot[0], bot[1], bot[2]],
-		triangles =[
+		faces =[
 			[0,2,1],
 			[0,1,4],
 			[4,3,0],
@@ -48,7 +48,7 @@ module displayquad(top)
 		points = [
 			top[0], top[2], top[3],
 			bot[0], bot[2], bot[3]],
-		triangles =[
+		faces =[
 			[0,2,1],
 			[0,3,2],
 			[3,5,2],

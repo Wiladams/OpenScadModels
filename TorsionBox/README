@@ -1,0 +1,8 @@
+This project contains a simple connector that is meant 
+to facilitate torsion box construction.  In particular, when
+a torsion box is being built utilizing materials such as cardboard
+or corrugated plastic panel.  This connector is meant to
+sit atop the vertices where two walls of the box come together.
+By doing so, it provides some amount of support at the vertex
+which will eliminate the need for other forms of support.
+

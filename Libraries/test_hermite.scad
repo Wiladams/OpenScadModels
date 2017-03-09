@@ -53,18 +53,18 @@ module linear_extrude_hermite(mesh,
 	{
 		for (vstep=[0:steps-1])
 		{
-			assign(ufrac1 = ustep/steps)
-			assign(ufrac2 = (ustep+1)/steps)
-			assign(vfrac1=vstep/steps)
-			assign(vfrac2=(vstep+1)/steps)
-			assign(quad = GetHermiteQuad(mesh, [ufrac1,vfrac1], [ufrac2,vfrac2]))
-			{
+			ufrac1 = ustep/steps;
+			ufrac2 = (ustep+1)/steps;
+			vfrac1=vstep/steps;
+			vfrac2=(vstep+1)/steps;
+			quad = GetHermiteQuad(mesh, [ufrac1,vfrac1], [ufrac2,vfrac2]);
+			
 				//color([acolor[0], acolor[1], acolor[2], ufrac1/vfrac2])
 				color(berp(colors, vfrac1))
 				PlaceQuad(quad);
 				//DisplayQuadFrame(quad);
 				//DisplayQuadShard(quad, thickness=thickness);
-			}
+			
 		}
 	}
 }
@@ -79,8 +79,8 @@ module DisplayBasis()
 	
 	for (step=[0:steps])
 	{
-		assign(u=step/steps)
-		{
+		u=step/steps;
+		
 			translate([step*(offset), 0, 0])
 			color([1,0,0])
 			cylinder(r=radius, h=HERMp0(u)*height);
@@ -99,9 +99,6 @@ module DisplayBasis()
 			translate([step*(offset), 30, 0])
 			color([0,0,1])
 			cylinder(r=radius, h=HERMp1(u)*height);
-	
-	
-		}
 	}
 }
 

@@ -10,7 +10,7 @@ rgb_image_array = [255,0,0, 0,255,0, 0,0,255, 255,0,0, 0,255,0, 0,0,255,
 //rgb_image = image(6,2,255, rgb_image_array); 
 //rgb_image = checker_image; 
 //rgb_image = tetra_80_60;
-//rgb_image = tetra_160_120;
+rgb_image = tetra_160_120;
 
 //test_texel();
 //test_display_image(32,24, tetra_160_120);
@@ -118,16 +118,7 @@ module DisplayQuadShard(quad,
 // TEST  Modules
 //============================================
 
-module test_getpixel()
-{
-echo("0,0", image_getpixel(rgb_image, 0,0));
-echo("1,0", image_getpixel(rgb_image, 1,0));
-echo("2,0", image_getpixel(rgb_image, 2,0));
 
-echo("0,1", image_getpixel(rgb_image, 0,1));
-echo("1,1", image_getpixel(rgb_image, 1,1));
-echo("2,1", image_getpixel(rgb_image, 2,1));
-}
 
 module test_texel()
 {
@@ -153,11 +144,11 @@ module test_display_image(width, height, img)
 
 	for (x=[0:width-1])
 	{
-		for (y=[height-1:0])
+		for (y=[0:height-1])
 		{
-			assign(rgb = image_gettexel(img, x/(width-1), y/(height-1)))
+			rgb = image_gettexel(img, x/(width-1), y/(height-1));
+			z=luminance(rgb);
 			translate([x,y,0])
-			assign(z=luminance(rgb))
 			color(rgb)
 			cube(size=[1,1,(z*3)+1]);
 		}

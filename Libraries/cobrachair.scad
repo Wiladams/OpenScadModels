@@ -1,6 +1,14 @@
+/*
+    cobrachair
+    
+    This is a test of the bezier extrusion mechanism.
+    The cp1-cp4 point arrays specify a control mesh.
+    This mesh can be made visible by setting the 
+    showControlFrame parameter to 'true'.
+*/
+
 include <Renderer.scad>
 
-cobrachair();
 
 module cobrachair()
 {
@@ -36,6 +44,8 @@ module cobrachair()
 		colors=[[1,0,0],[1,1,0],[0,1,1],[0,0,1]],
 		steps=8, 
 		thickness = -3, 
-		showNormals=false,
+		showNormals=true,
 		showControlFrame=false);
 }
+
+cobrachair();

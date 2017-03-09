@@ -77,23 +77,23 @@ module DrawMetaballs(nBalls, ballList, area, resolution=[1,1], thickness=1)
 		{
 			if (nBalls == 2)
 			{
-			assign(sum=Sum2(x/xres, y/yres, ballList))
-			{
+			sum=Sum2(x/xres, y/yres, ballList);
+			
 				if (sum > MIN_THRESHOLD && sum < MAX_THRESHOLD)
 				{
 					translate([x/xres, y/yres, 0])
 					cube([1/xres, 1/yres, thickness]);
 				}
-			} } else if (nBalls == 3)
+			} else if (nBalls == 3)
 			{
-				assign(sum=Sum3(x/xres, y/yres, ballList))
-				{
+				sum=Sum3(x/xres, y/yres, ballList);
+				
 					if (sum > MIN_THRESHOLD && sum < MAX_THRESHOLD)
 					{
 						translate([x/xres, y/yres, 0])
 						cube([1/xres, 1/yres, thickness]);
 					}
-				}
+				
 			}
 		}
 	}

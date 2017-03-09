@@ -124,7 +124,7 @@ module DisplayNumber(number, height=1)
 		digitvalue = value(digitchar);
 		
 		echo(digitchar, " ", digitvalue);
-		translate([(counter)*(digitwidth+gap),0,0])
+		translate([counter*(digitwidth+gap),0,0])
 		DisplayDigit(digitvalue, height);
 	}
 }

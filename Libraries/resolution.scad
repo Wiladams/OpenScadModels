@@ -1,9 +1,4 @@
-//dpmm = 3.62205;	// == 92 dpi
-//dpmm = 2.835;	// == 72 dpi
-dpmm = .5;
 
-//display_mesh([160,120], [80,60]);
-display_mesh([32,24], [dpmm,dpmm]);
 
 
 
@@ -30,19 +25,19 @@ echo("Iteration: ", xiter, yiter);
 	{
 		for(xcnt=[0:xiter-1])
 		{
-			assign(z=0)
-			assign(quad=[
+			z=0;
+			quad=[
 				[xcnt*cellwidth, ycnt*cellheight, z],
 				[(xcnt+1)*cellwidth, ycnt*cellheight, z],
 				[(xcnt+1)*cellwidth, (ycnt+1)*cellheight, z],
-				[xcnt*cellwidth, (ycnt+1)*cellheight, z]])
+				[xcnt*cellwidth, (ycnt+1)*cellheight, z]];
 
-			{
+			
 //echo(quad);
 				color([ycnt*xcnt/(xiter*yiter), ycnt*xcnt/(xiter*yiter), ycnt*xcnt/(xiter*yiter)])
 				polyhedron(points = quad,
-					triangles = [[0,1,2,3]]);
-			}
+					faces = [[0,1,2,3]]);
+			
 		}
 	}
 }

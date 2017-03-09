@@ -4,6 +4,11 @@
 // September 2011
 //=====================================
 
+/*
+    A set of routines that mimic the 
+    OpenGLSL (shader library) functions.
+*/
+
 include <glsl.scad>
 
 
@@ -32,6 +37,7 @@ function map_to_array(len, u) = u*len >= len ? len-1 : floor(u*len);
 		height - height in pixels
 		maxvalue	- The maximum value of any component
 		values - The array of values representing the image
+        cpe - components per entry (ex RGB = 3)
 */
 function image(width, height, maxvalue, values, cpe=3) = 
 	[width, height, maxvalue, values, cpe];
@@ -52,7 +58,7 @@ function _image_getpixel(img, offset) =
 				(img[4] == 2) ? _image_getpixel_2(img,offset) : [0];
 
 
-function image_getpixel(img, xy) = _image_getpixel(img, image_getoffset([img[0],img[1]], xy));
+function image_getpixel(img, xy) = _image_getpixel(img, image_getoffset([img[0],img[1]], xy, img[4]));
 
 function image_gettexelcoords(size, s, t) = [map_to_array(size[0],s), map_to_array(size[1],t)];
 
@@ -77,17 +83,6 @@ function image_gettexel(img, s, t, r=0, q=1) = image_pixel_normalize(img, image_
 	It is a simple black/white image that is 8x8 pixels, like a standard
 	chess board.
 */
-//checker_array = [ 
-//0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255,
-//255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0,
-//0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255,
-//255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0,
-//0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255,
-//255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0,
-//0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255,
-//255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0, 255,255,255, 0,0,0
-//];
-// checker_image = image(8,8,255, checker_array, cpe=3); 
 
 checker_array = [ 
 0, 1, 0, 1, 0, 1, 0, 1,

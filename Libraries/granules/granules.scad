@@ -41,7 +41,7 @@ module PlaceGranuleLineH(x1,y,  length, colors=[[1,1,0],[1,1,0],[1,1,],[1,1,0]],
 
 	for (x=[xStart:xEnd])
 	{
-		assign(currentcolor = PointOnBezCubic3D(colors[0], colors[1], colors[2], colors[3], abs(x-xStart)/deltax))
+		currentcolor = PointOnBezCubic3D(colors[0], colors[1], colors[2], colors[3], abs(x-xStart)/deltax);
 		PlaceGranuleXY(x, y, currentcolor, granuleSize);
 	}
 }
@@ -56,7 +56,7 @@ module PlaceGranuleLine(x1, y1, x2, y2, colors=[[1,1,0],[1,1,0],[1,1,],[1,1,0]],
 
 	for (x=[x1:x2])
 	{
-		assign(currentcolor = PointOnBezCubic3D(colors[0], colors[1], colors[2], colors[3], abs(x-x1)/deltax))
+		currentcolor = PointOnBezCubic3D(colors[0], colors[1], colors[2], colors[3], abs(x-x1)/deltax);
 		PlaceGranuleXY(x, (m*x+b), currentcolor, gGranuleSize*1.2);
 	}
 }

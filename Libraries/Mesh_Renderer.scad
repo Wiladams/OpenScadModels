@@ -191,9 +191,10 @@ module shell_extrude_color_map(size, resolution, sfactor=1, heightmap=checker_im
 	hmsize = [hmwidth, hmheight];
 	hmvalues = heightmap[3];
 	hmmaxvalue = heightmap[2];
+	hmcpe = heightmap[4];
 
-echo(size);
-echo(hmsize);
+//echo(size);
+//echo(hmsize);
 
 	for (ycnt =[0:yiter-1])
 	{
@@ -209,10 +210,10 @@ echo(hmsize);
 			assign(x2=(xcnt+1)*cellwidth)
 			assign(y2=(ycnt+1)*cellheight)
 			
-			assign(zoff1 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y1frac), cpe=3))
-			assign(zoff2 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y2frac), cpe=3))
-			assign(zoff3 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y2frac), cpe=3))
-			assign(zoff4 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y1frac), cpe=3))
+			assign(zoff1 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y1frac), cpe=hmcpe))
+			assign(zoff2 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x1frac,y2frac), cpe=hmcpe))
+			assign(zoff3 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y2frac), cpe=hmcpe))
+			assign(zoff4 = image_getoffset(hmsize, image_gettexelcoords(hmsize,x2frac,y1frac), cpe=hmcpe))
 
 			assign(z1 = sfactor*hmvalues[zoff1]/hmmaxvalue)
 			assign(z2 = sfactor*hmvalues[zoff2]/hmmaxvalue)

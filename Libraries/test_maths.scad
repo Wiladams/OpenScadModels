@@ -152,19 +152,18 @@ module testrotation()
 
 	for (step = [0:steps])
 	{
-		assign(theta = lowangle +  (highangle-lowangle)*step/steps)
-		{
-			assign(x = len*sin(theta))
-			assign(y = len*cos(theta))
-			{
+		theta = lowangle +  (highangle-lowangle)*step/steps;
+		
+			x = len*sin(theta);
+			y = len*cos(theta);
+			
 echo("X,Y: ", x, y);
 echo("THETA: ", theta);
 				//rotate([0,theta,0])
 				//cylinder(r=1, h=len);
 
 				placeLine([[0,0,0],[x,y,y]]);
-			}
-		}
+			
 	}
 }
 

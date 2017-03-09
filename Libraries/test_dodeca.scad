@@ -84,7 +84,7 @@ dodeca_cart = [
 //);
 
 polyhedron(points=dodeca_cart,
-triangles=[
+faces=[
 [1,9,8,0,17],
 [9,1,14,15,2],
 [9,2,16,3,8],

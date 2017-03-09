@@ -33,7 +33,7 @@ rgb_image = image(4,4,255, checker_array);
 
 //nob();
 //halokiss();
-//pierced();
+pierced();
 
 //linear_extrude_revoloid(cps = [[0, 1, 0],[2,3,0], [4,1,0],[5,2,0]],
 //	A = cubic_catmullrom_M(), umult = 5, 
