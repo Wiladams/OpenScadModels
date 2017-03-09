@@ -50,11 +50,11 @@ module PlaceTriangle(verts, reverse = 0)
 	 if (reverse == true)
 	 {
 		 polyhedron(points=[verts[0], verts[1],verts[2]], 
-	 	triangles=[[0,1,2]]);
+	 	faces=[[0,1,2]]);
 	 } else 
 	 {
 	 	polyhedron(points=[verts[0], verts[1],verts[2]], 
-	 	triangles=[[2,1,0]]);
+	 	faces=[[2,1,0]]);
 	 }
 }
 

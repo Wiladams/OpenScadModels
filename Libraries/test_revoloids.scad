@@ -1,4 +1,5 @@
 include <revoloids.scad>
+include <imaging.scad>
 
 largeradius = 40; 
 smallradius = largeradius / Cphi;
@@ -26,14 +27,14 @@ rgb_image = image(4,4,255, checker_array);
 
 //sor_ellipsoid(10,7);
 //sor_sphere(r=20);
-//sor_sphere(r=20, texture = rgb_image);
+sor_sphere(r=20, texture = rgb_image);
 //sor_torus(innerRadius = 15, size=[10,6]);
 //sor_bezier([[0,0,0], [0, 50,0], [20,10,0], [40, 1, 0]], texture = rgb_image);
 //sor_bezier([[0,0,0], [0, 50,0], [20,10,0], [40, 1, 0]]);
 
 //nob();
 //halokiss();
-pierced();
+//pierced();
 
 //linear_extrude_revoloid(cps = [[0, 1, 0],[2,3,0], [4,1,0],[5,2,0]],
 //	A = cubic_catmullrom_M(), umult = 5, 

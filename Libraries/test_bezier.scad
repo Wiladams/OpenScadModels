@@ -96,26 +96,6 @@ module PlaceLine(seg, radius=0.025)
 	//cube(size=[radius, radius, len]);
 }
 
-//module PlaceTriangle(verts, reverse = 0)
-//{
-//	if (reverse == true)
-//	{
-//		polyhedron(points=[verts[0], verts[1],verts[2]], 
-//			triangles=[[0,1,2]]);
-//	} else		
-//	{
-//		polyhedron(points=[verts[0], verts[1],verts[2]], 
-//			triangles=[[2,1,0]]);
-//	}
-//}
-//
-//module PlaceQuad(quad) 
-//{
-//	PlaceTriangle([quad[0], quad[1], quad[2]]);
-//	PlaceTriangle([quad[0], quad[2], quad[3]]);
-//}
-
-
 
 // Display a polyhedron with some thickness
 module DisplayTriShard(shard)
@@ -124,7 +104,7 @@ module DisplayTriShard(shard)
 		points=[
 			shard[0][0], shard[0][1],shard[0][2], 		// Top
 			shard[1][0], shard[1][1], shard[1][2]],		// Bottom
-		triangles=[
+		faces=[
 				[0,2,1],
 				[3,4,5],
 				[1,5,4],

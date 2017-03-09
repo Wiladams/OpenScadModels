@@ -154,23 +154,24 @@ module shell_extrude_revoloid( cps,
 	for (stack = [0:stacksteps-1])
 	{
 		// Get a point on the first derivative curve
-		assign(TDU0 = vec4_mults(quadratic_U(stack/stacksteps), umult))
-		assign(TDU1 = vec4_mults(quadratic_U((stack+1)/stacksteps), umult))
+		TDU0 = vec4_mults(quadratic_U(stack/stacksteps), umult);
+		TDU1 = vec4_mults(quadratic_U((stack+1)/stacksteps), umult);
 
 		// Get a point on the curve
-		assign(T0 = vec4_mults(cubic_U(stack/stacksteps), umult))
-		assign(T1 = vec4_mults(cubic_U((stack+1)/stacksteps), umult))
+		T0 = vec4_mults(cubic_U(stack/stacksteps), umult);
+		T1 = vec4_mults(cubic_U((stack+1)/stacksteps), umult);
+
 		for (astep=[0:anglesteps-1])
 		{
 			// Circle tangent
 			// It is the same, no matter what the radius
 			// so we just need it for the two bounding angles
-			assign(CT0 = circletangent([0,0,1,1], startangle + (astep*stepangle)))
-			assign(CT1 = circletangent([0,0,1,1],startangle + ((astep+1)*stepangle)))
+			CT0 = circletangent([0,0,1,1], startangle + (astep*stepangle));
+			CT1 = circletangent([0,0,1,1],startangle + ((astep+1)*stepangle));
 
-			assign(S1 = transform_rotx(startangle + (astep*stepangle)))
-			assign(S2 = transform_rotx(startangle + ((astep+1)*stepangle)))
-			{
+			S1 = transform_rotx(startangle + (astep*stepangle));
+			S2 = transform_rotx(startangle + ((astep+1)*stepangle));
+			
 				// Get the tangent along the curve at the 4 points
 				assign(Tp0 = cubic_surface_pt(TDU0, A, G, S1))
 				assign(Tp1 = cubic_surface_pt(TDU0, A, G, S2))
@@ -238,7 +239,7 @@ module shell_extrude_revoloid( cps,
 						}
 					}
 				}
-			}
+			
 		}
 	}
 }
