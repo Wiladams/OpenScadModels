@@ -1,8 +1,8 @@
-include <platonic.scad>
+include <../platonic.scad>
 
 //test_duals();
-test_wireframes();
-//test_polyhedron();
+//test_wireframes();
+test_polyhedron();
 
 //=======================================
 //	WIREFRAMES
@@ -45,14 +45,6 @@ echo(line*angle);
 		rotate(v=[0,0,1], a=line*angle)
 		display_polywireframe(tetrahedron(60), radius=1, style=0);
 	}
-//	rotate(v=[0,0,1], a=45)
-//	display_polywireframe(tetrahedron(40), radius=2.5, style=0);
-//
-//	rotate(v=[0,0,1], a=90)
-//	display_polywireframe(tetrahedron(40), radius=2.5, style=0);
-//
-//	rotate(v=[0,0,1], a=135)
-//	display_polywireframe(tetrahedron(40), radius=2.5, style=0);
 }
 
 //====================================
