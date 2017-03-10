@@ -1,4 +1,4 @@
-include <superellipse.scad>
+include <../waolib/superellipse.scad>
 
 //test_singles();
 //test_csg();

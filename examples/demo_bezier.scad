@@ -4,6 +4,8 @@
 //=====================================
 
 include <Renderer.scad>
+include <bezier.scad>
+
 
 joinfactor = 0.125;
 
@@ -35,40 +37,37 @@ BezCubicRibbon3D(
 
 
 
-//PlotBEZ0(100);
-//PlotBEZ1(100);
-//PlotBEZ2(100);
-//PlotBEZ3(100);
+//PlotBEZ0(100,0);
+//PlotBEZ1(100,4);
+//PlotBEZ2(100,8);
+//PlotBEZ3(100,12);
 //PlotBez4Blending();
 
 //===================================
 // Modules
 //===================================
 
-module PlotRectangle(sizer)
-{
-	scaler = 1;
-echo(sizer[0], sizer[1], sizer[2]);
-
-	translate([sizer[0]*scaler, sizer[1]*scaler, 0])
-	cylinder(r=3, h=sizer[2]);	
-//cube(size=[1,1,sizer[2]]);
-}
-
 module BezCubicRibbon3D(c1, c2, steps=gDemoSteps, colors=[[1,0,0],[1,1,0],[0,1,1],[0,0,1]])
 {
 	for (step=[0:steps-1]) 
 	{
-		color(PointOnBezCubic3D(colors[0], colors[1], colors[2], colors[3], step/steps))
-		linear_extrude(height = PointOnBezCubic3D(c1[0], c1[1], c1[2],c1[3], step/steps)[2], convexity = 10) 
+		acolor = berp(colors, step/steps);
+        //echo("COLOR: ", acolor);
+		color(acolor)
+        linear_extrude(height = berp(c1, step/steps)[2], convexity = 10) 
 		polygon(
 			points=[
-				PointOnBezCubic2D(c1[0], c1[1], c1[2],c1[3], step/steps),
-				PointOnBezCubic2D(c2[0], c2[1], c2[2],c2[3], (step)/steps),
-				PointOnBezCubic2D(c2[0], c2[1], c2[2],c2[3], (step+1)/steps),
-				PointOnBezCubic2D(c1[0], c1[1], c1[2],c1[3], (step+1)/steps)],
+				berp(c1, step/steps),
+				berp(c2, (step)/steps),
+				berp(c2, (step+1)/steps),
+				berp(c1, (step+1)/steps)],
+
 			paths=[[0,1,2,3]]
 	);
+//				PointOnBezCubic2D(c1[0], c1[1], c1[2],c1[3], step/steps),
+//				PointOnBezCubic2D(c2[0], c2[1], c2[2],c2[3], (step)/steps),
+//				PointOnBezCubic2D(c2[0], c2[1], c2[2],c2[3], (step+1)/steps),
+//				PointOnBezCubic2D(c1[0], c1[1], c1[2],c1[3], (step+1)/steps)],
 
 }
 
@@ -104,51 +103,55 @@ module DrawCubicControlPoints(c, focalPoint, height)
 	cylinder(r=0.5, h=height+joinfactor);
 }
 
-module PlotBEZ0(steps)
+module PlotBEZ0(steps, offset=0)
 {
 	cubeSize = 1;
 	cubeHeight = steps;
 
+    color([0,0,1,0.5])
 	for (step=[0:steps])
 	{
-		translate([cubeSize*step, 0, 0])
-		cube(size=[cubeSize, cubeSize, BEZ03(step/steps)*cubeHeight]);
+		translate([cubeSize*step, offset, 0])
+		cube(size=[cubeSize, cubeSize, Basis03(step/steps)*cubeHeight]);
 	}	
 }
 
-module PlotBEZ1(steps)
+module PlotBEZ1(steps, offset=0)
 {
 	cubeSize = 1;
 	cubeHeight = steps;
 
+    color([0,1,0,0.5])
 	for (step=[0:steps])
 	{
-		translate([cubeSize*step, 0, 0])
-		cube(size=[cubeSize, cubeSize, BEZ13(step/steps)*cubeHeight]);
+		translate([cubeSize*step, offset, 0])
+		cube(size=[cubeSize, cubeSize, Basis13(step/steps)*cubeHeight]);
 	}	
 }
 
-module PlotBEZ2(steps)
+module PlotBEZ2(steps, offset=0)
 {
 	cubeSize = 1;
 	cubeHeight = steps;
 
+    color([1,0,0,0.5])
 	for (step=[0:steps])
 	{
-		translate([cubeSize*step, 0, 0])
-		cube(size=[cubeSize, cubeSize, BEZ23(step/steps)*cubeHeight]);
+		translate([cubeSize*step, offset, 0])
+		cube(size=[cubeSize, cubeSize, Basis23(step/steps)*cubeHeight]);
 	}	
 }
 
-module PlotBEZ3(steps)
+module PlotBEZ3(steps, offset=0)
 {
 	cubeSize = 1;
 	cubeHeight = steps;
 
+    color([0,1,1,0.5])
 	for (step=[0:steps])
 	{
-		translate([cubeSize*step, 0, 0])
-		cube(size=[cubeSize, cubeSize, BEZ33(step/steps)*cubeHeight]);
+		translate([cubeSize*step, offset, 0])
+		cube(size=[cubeSize, cubeSize, Basis33(step/steps)*cubeHeight]);
 	}	
 }
 

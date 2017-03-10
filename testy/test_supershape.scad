@@ -1,4 +1,4 @@
-include <supershape.scad>
+include <../waolib/supershape.scad>
 
 //test_singles();
 //test_symmetry();

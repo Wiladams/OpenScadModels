@@ -76,12 +76,12 @@ function EvalSuperShape2D(shape, phi) = _EvalSuperShape2D2(phi, shape[1], t1=SSC
 //	// normal ranges, so iterate and rotate
 //	for (j=[0:phisteps-1])
 //	{
-//		assign(phi1 = j*phiangle)
-//		assign(phi2 = (j+1)*phiangle)
+//		phi1 = j*phiangle;
+//		phi2 = (j+1)*phiangle;
 //
-//		assign(v1 = EvalSuperShape2D(shape, phi1))
-//		assign(v2 = EvalSuperShape2D(shape, phi2))
-//		{
+//		v1 = EvalSuperShape2D(shape, phi1);
+//		v2 = EvalSuperShape2D(shape, phi2);
+//		
 //			if (points)
 //			{
 //				color(pointcolor)
@@ -94,7 +94,7 @@ function EvalSuperShape2D(shape, phi) = _EvalSuperShape2D2(phi, shape[1], t1=SSC
 //				color(wirecolor)
 //				PlaceLine([v1, v2], radius=radius);
 //			}
-//		}
+//		
 //	}
 //}
 
@@ -121,11 +121,11 @@ module RenderSuperShape2D(shape=supershape(0, 1, 1, 1, 1, 1),
 	// normal ranges, so iterate and rotate
 	for (j=[0:phisteps-1])
 	{
-		assign(phi1 = j*phiangle)
-		assign(phi2 = (j+1)*phiangle)
+		phi1 = j*phiangle;
+		phi2 = (j+1)*phiangle;
 
-		assign(v1 = EvalSuperShape2D(shape, phi1))
-		assign(v2 = EvalSuperShape2D(shape, phi2))
+		v1 = EvalSuperShape2D(shape, phi1);
+		v2 = EvalSuperShape2D(shape, phi2);
 		{
 			if (points)
 			{

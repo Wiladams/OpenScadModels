@@ -1,4 +1,5 @@
 include <maths.scad>
+include <bezier.scad>
 include <Renderer.scad>
 
 //===================================================
@@ -138,7 +139,8 @@ module shell_extrude_revoloid( cps,
 	colors=[[1,0,0],[1,1,0],[0,1,1],[0,0,1]],
 	showNormals = false,
 	showWireframe= false,
- 	texture=image(0,0,0,[]))
+ 	texture=image(0,0,0,[]),
+	wirethickness = 0.1)
 {
 	dangle = endangle - startangle;
 	stepangle = dangle/anglesteps;
@@ -207,7 +209,7 @@ module shell_extrude_revoloid( cps,
 							color(facetcolor)
 							if (showWireframe)
 							{
-								DisplayQuadFrame(quadshard[0], radius = 1/16);
+								DisplayQuadFrame(quadshard[0], radius = wirethickness);
 							} else
 							{
 								// When debugging, PlaceQuad is simple and will

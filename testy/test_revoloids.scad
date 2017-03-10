@@ -1,5 +1,5 @@
-include <revoloids.scad>
-include <imaging.scad>
+include <../waolib/revoloids.scad>
+include <../waolib/imaging.scad>
 
 largeradius = 40; 
 smallradius = largeradius / Cphi;
@@ -27,7 +27,7 @@ rgb_image = image(4,4,255, checker_array);
 
 //sor_ellipsoid(10,7);
 //sor_sphere(r=20);
-sor_sphere(r=20, texture = rgb_image);
+//sor_sphere(r=20, texture = rgb_image);
 //sor_torus(innerRadius = 15, size=[10,6]);
 //sor_bezier([[0,0,0], [0, 50,0], [20,10,0], [40, 1, 0]], texture = rgb_image);
 //sor_bezier([[0,0,0], [0, 50,0], [20,10,0], [40, 1, 0]]);
@@ -73,14 +73,16 @@ sor_sphere(r=20, texture = rgb_image);
 //	steps=10, 
 //	showNormals=true);
 
-//shell_extrude_revoloid(cps = [[0, 1, 0],[2,3,0], [4,1,0],[5,2,0]],
-//	 A = cubic_bezier_M(), umult = 5, 
-//	startangle = 15, endangle = 135,
-//	anglesteps = 8, stacksteps =12,	
-//	thickness = -3,
-//	colors=[[1,1,0,1],[1,1,0,0.75],[0,1,1,0.75],[0.5,0.75,1,1]],
-//	showNormals = true,
-//	showWireframe=false);
+shell_extrude_revoloid(
+    cps = [[0, 1, 0],[2,3,0], [4,1,0],[5,2,0]],
+	A = cubic_bezier_M(), umult = 5, 
+	startangle = 15, endangle = 135,
+	anglesteps = 32, stacksteps =32,	
+	thickness = -3,
+	colors=[[1,1,0,1],[1,1,0,0.75],[0,1,1,0.75],[0.5,0.75,1,1]],
+	showNormals = false,
+	showWireframe=true,
+    wirethickness = 0.02);
 
 
 

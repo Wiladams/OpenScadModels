@@ -5,6 +5,10 @@
 	Placed By: William A Adams
 	31 Oct 2011
 */
+
+// reference to do bit operations
+// http://stackoverflow.com/questions/2982729/is-it-possible-to-implement-bitwise-operators-using-integer-arithmetic
+
 // convenience for powers of 2 arithmetic
 // Bits start counting from '0'
 function bitval(pos) = pow(2,(pos)); 

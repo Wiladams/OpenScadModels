@@ -4,6 +4,7 @@
 // 11 May 2011
 //=====================================
 include <../waolib/maths.scad>
+include <../waolib/bezier.scad>
 include <../waolib/Renderer.scad>
 
 
