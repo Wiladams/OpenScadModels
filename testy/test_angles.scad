@@ -1,4 +1,4 @@
-include <maths.scad>
+include <../waolib/maths.scad>
 
 steps = 1;
 lowangle = 315;

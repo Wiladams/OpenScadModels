@@ -8,7 +8,7 @@
 // http://paulbourke.net/geometry/supershape3d/
 //
 
-include <LineRenderer.scad>
+include <Renderer.scad>
 
 pi = 180;	// 3.14159;
 
@@ -162,7 +162,7 @@ module RenderSuperShape2D(shape=supershape(0, 1, 1, 1, 1, 1),
 		http://paulbourke.net/geometry/supershape3d/
 */
 
-function nozeros(v1,v2,v3,v4) = v1 !=0 && v2!=0 && v3!=0 && v3!=0;
+function nozeros(v1,v2,v3,v4) = v1 !=0 && v2!=0 && v3!=0 && v4!=0;
 
 module RenderSuperShape(shape1=supershape(0, 1, 1, 1, 1, 1), shape2=supershape(0, 1, 1, 1, 1, 1),
 	phisteps = 36,
@@ -229,7 +229,7 @@ module RenderSuperShape(shape1=supershape(0, 1, 1, 1, 1, 1), shape2=supershape(0
 							color(procedural_texture(jfrac,ifrac,pattern[0],pattern[1]))
 							polyhedron(
 								points = [pa,pb,pc,pd],
-								triangles = [
+								faces = [
 									[0,3,2],	// pa, pd, pc
 									[0, 2, 1]	// pa, pc, pb
 								]);
@@ -238,7 +238,7 @@ module RenderSuperShape(shape1=supershape(0, 1, 1, 1, 1, 1), shape2=supershape(0
 							color(facecolor)
 							polyhedron(
 								points = [pa,pb,pc,pd],
-								triangles = [
+								faces = [
 									[0,3,2],	// pa, pd, pc
 									[0, 2, 1]	// pa, pc, pb
 								]);

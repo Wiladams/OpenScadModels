@@ -3,8 +3,8 @@
 // Contributed by: William A Adams
 // 11 May 2011
 //=====================================
-include <maths.scad>
-include <Renderer.scad>
+include <../waolib/maths.scad>
+include <../waolib/Renderer.scad>
 
 
 //=======================================
@@ -40,7 +40,6 @@ gcp1 = [[0,0,0], [10,-10,0], [20,-10,0], [30,0,0]];
 
 //DisplayBezMeshPoints([gcp1, gcp2, gcp3, gcp4], steps=36, $fn=12);
 
-//PlaceLine([[0,0,0], [10,10,10]], $fn=12);
 
 //DisplayBezControlFrame([gcp1, gcp2, gcp3, gcp4], $fn=3);
 //DisplayBezCurveFrame([gcp1, gcp2, gcp3, gcp4], steps=24, $fn=6);
@@ -55,17 +54,13 @@ DisplayBezSurface([gcp1, gcp2, gcp3, gcp4], steps=16, thickness=3);
 //
 //=======================================
 
-function parseSeg(seg) = [ 
-	seg[0], 
-	LineRotations(seg[1]-seg[0]), 
-	VMAG(seg[1]-seg[0])
-	];
-
+/*
 function sNorm(tri) = VUNIT(VCROSS(tri[2]-tri[1],  tri[0]-tri[1]));
 
 function triNormals(tri) = [sNorm([tri[2],tri[0],tri[1]]), 
 				sNorm([tri[0],tri[1],tri[2]]), 
 				sNorm([tri[1],tri[2],tri[0]])];
+*/
 
 function quadtrans(quad, trans) = [
 	VSUM(quad[0], trans), 
@@ -76,62 +71,7 @@ function quadtrans(quad, trans) = [
 //=========================================
 //		Modules
 //=========================================
-module PlaceLine(seg, radius=0.025) 
-{
-	params = parseSeg(seg);
 
-//echo("Segment: ", params,r);
-
-	origin = params[0];
-	rot = params[1];
-	len = params[2];
-
-//echo("ORIGIN ", params[0]);
-//echo("ROTATION: ", rot);
-//echo("LENGTH: ",len);
-
-	translate(origin)
-	rotate(rot)
-	cylinder(r=radius, h=len, $fn=12);
-	//cube(size=[radius, radius, len]);
-}
-
-
-// Display a polyhedron with some thickness
-module DisplayTriShard(shard)
-{
-	polyhedron(
-		points=[
-			shard[0][0], shard[0][1],shard[0][2], 		// Top
-			shard[1][0], shard[1][1], shard[1][2]],		// Bottom
-		faces=[
-				[0,2,1],
-				[3,4,5],
-				[1,5,4],
-				[1,2,5],
-				[2,3,5],
-				[2,0,3],
-				[0,4,3],
-				[0,1,4]
-				]);
-}
-
-//module DisplayTriangle(verts, thickness=1)
-//{
-//	// get the normals for each of the corners
-//	tNorms = triNormals(verts);
-//	stems = [
-//			verts[0]+tNorms[0]*thickness*-1,
-//			verts[1]+tNorms[1]*thickness*-1,
-//			verts[2]+tNorms[2]*thickness*-1
-//			];
-//
-////echo("NORMALS: ", tNorms);
-////echo("STEMS: ", stems);
-// 
-//	DisplayShard([verts,stems]);
-//}
-//
 
 module DisplayQuadShard(quad, thickness=1) 
 {
@@ -145,6 +85,7 @@ module DisplayQuadShard(quad, thickness=1)
 	DisplayTriShard([[quad[0],quad[2],quad[3]],
 		[lowquad[0], lowquad[2], lowquad[3]]]);
 }
+
 
 module DisplayBezControlPoints(cps)
 {
@@ -164,7 +105,7 @@ module DisplayBezCurvePoints(cps, steps=3)
 
 	for (astep=[0:steps])
 	{
-		assign(pt = berp(cps, astep/steps))
+		pt = berp(cps, astep/steps);
 		{
 			translate(pt)
 			//cube(size=[side, side, side]);
@@ -173,16 +114,6 @@ module DisplayBezCurvePoints(cps, steps=3)
 	}
 }
 
-
-module DisplayQuadFrame(quad, radius=0.125)
-{
-//echo("QUAD: ", quad);
-
-	PlaceLine([quad[0], quad[1]], radius);
-	PlaceLine([quad[1], quad[2]], radius);
-	PlaceLine([quad[2], quad[3]], radius);
-	PlaceLine([quad[3], quad[0]], radius);
-}
 
 module DisplayBezCurve(cps, steps=6)
 {
@@ -202,7 +133,7 @@ module DisplayBezMeshPoints(mesh, steps=6)
 	{
 		for(vstep=[0:steps])
 		{
-			assign(vpt = berpm(mesh, [ustep/steps, vstep/steps]))
+			vpt = berpm(mesh, [ustep/steps, vstep/steps]);
 			translate(vpt)
 			sphere(r=side);
 		}
@@ -227,14 +158,14 @@ module DisplayBezCurveFrame(mesh,
 	{
 		for (vstep=[0:steps-1])
 		{
-			assign(ufrac1 = ustep/steps)
-			assign(ufrac2 = (ustep+1)/steps)
-			assign(vfrac1=vstep/steps)
-			assign(vfrac2=(vstep+1)/steps)
-			assign(quad = GetCurveQuad(mesh, [ufrac1,vfrac1], [ufrac2,vfrac2]))
-			{
-				DisplayQuadFrame(quad, 36);
-			}
+			ufrac1 = ustep/steps;
+			ufrac2 = (ustep+1)/steps;
+			vfrac1=vstep/steps;
+			vfrac2=(vstep+1)/steps;
+			quad = GetCurveQuad(mesh, [ufrac1,vfrac1], [ufrac2,vfrac2]);
+			
+			DisplayQuadFrame(quad, 36);
+			
 		}
 	}
 }
@@ -247,18 +178,17 @@ module DisplayBezSurface(mesh,
 	{
 		for (vstep=[0:steps-1])
 		{
-			assign(ufrac1 = ustep/steps)
-			assign(ufrac2 = (ustep+1)/steps)
-			assign(vfrac1=vstep/steps)
-			assign(vfrac2=(vstep+1)/steps)
-			assign(quad = GetCurveQuad(mesh, [ufrac1,vfrac1], [ufrac2,vfrac2]))
+			ufrac1 = ustep/steps;
+			ufrac2 = (ustep+1)/steps;
+			vfrac1=vstep/steps;
+			vfrac2=(vstep+1)/steps;
+			quad = GetCurveQuad(mesh, [ufrac1,vfrac1], [ufrac2,vfrac2]);
 			{
-				assign(acolor = PtOnBez(colors, vfrac1))
-				{
-					echo("COLOR: ", acolor);
-					color([acolor[0], acolor[1], acolor[2], ufrac1/vfrac2])
-					DisplayQuadShard(quad, thickness=thickness);
-				}
+                acolor = berp(colors,vfrac1);
+//				echo("COLOR: ", acolor, vfrac2);
+				color([acolor[0], acolor[1], acolor[2], vfrac2])
+				DisplayQuadShard(quad, thickness=thickness);
+				
 			}
 		}
 	}

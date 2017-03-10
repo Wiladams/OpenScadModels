@@ -123,7 +123,7 @@ module superellipse(power1, power2,
 						color(procedural_texture(jfrac,ifrac,pattern[0],pattern[1]))
 						polyhedron(
 							points = [v1,v2,v3,v4],
-							triangles = [
+							faces = [
 								[0,2,1],
 								[0,3,2]
 							]);

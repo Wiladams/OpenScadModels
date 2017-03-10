@@ -80,7 +80,7 @@ module DisplayTriShard(shard)
 		points=[
 			shard[0][0], shard[0][1],shard[0][2], // Top
 			shard[1][0], shard[1][1], shard[1][2]], // Bottom
-		triangles=[
+		faces=[
 			[0,2,1],
 			[3,4,5],
 			[1,5,4],
@@ -92,25 +92,6 @@ module DisplayTriShard(shard)
 			]);
 }
 
-// Old style, complete single polyhedron for a quad shard
-//	polyhedron(
-//		points=[
-//			outer[0], outer[1],outer[2], outer[3],	// Top
-//			inner[0], inner[1], inner[2], inner[3]], 	// Bottom
-//		triangles=[
-//			[0,2,1],	// top
-//			[0,3,2],	// top
-//			[0,5,4],
-//			[0,1,5],
-//			[1,6,5],
-//			[1,2,6],
-//			[2,7,6],
-//			[2,3,7],
-//			[3,4,7],
-//			[3,0,4],
-//			[4,5,6],	// bottom
-//			[4,6,7]
-//			]);
 
 module DisplayQuadShards( outer, inner,  edgefaces=[true, true, true, true] ) 
 {
@@ -260,11 +241,11 @@ module DisplayCubicCurve(M, umult=1,
 	for (step=[0:steps-1])
 	{
 		// Prepare to Get a point on the first derivative curve 
-		assign(du1 = vec4_mults(quadratic_U(step/steps), umult))
-		assign(du2 = vec4_mults(quadratic_U((step+1)/steps), umult))
+		du1 = vec4_mults(quadratic_U(step/steps), umult);
+		du2 = vec4_mults(quadratic_U((step+1)/steps), umult);
 
-		assign(u1 = cubic_U(step/steps))
-		assign(u2 = cubic_U((step+1)/steps))
+		u1 = cubic_U(step/steps);
+		u2 = cubic_U((step+1)/steps);
 		{
 			assign(tpt0 = ccerp(du1, M, G))
 			assign(tpt1 = ccerp(du2, M, G))

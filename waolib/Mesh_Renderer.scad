@@ -159,7 +159,7 @@ module shell_extrude_height_map(size, resolution, sfactor=1, heightmap=checker_i
 					ycnt==0]);
 				} else
 				{
-					polyhedron(points = quad, triangles = [[0,1,2,3]]);
+					polyhedron(points = quad, faces = [[0,1,2,3]]);
 				}
 			}
 		}

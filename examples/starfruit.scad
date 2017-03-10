@@ -1,6 +1,6 @@
 // http://www.thingiverse.com/thing:12889
 
-include <supershape.scad> 
+include <../waolib/supershape.scad> 
 
 scale([10,10,10])
 RenderSuperShape(
