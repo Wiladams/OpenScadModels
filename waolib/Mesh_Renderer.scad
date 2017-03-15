@@ -8,7 +8,7 @@ module DisplayQuadShards( outer, inner, edgefaces=[true, true, true, true] )
 		points=[
 			outer[0], outer[1],outer[2], outer[3], // Top
 			inner[0], inner[1], inner[2], inner[3]], // Bottom
-		triangles=[
+		faces=[
 			[0,2,1], // top
 			[0,3,2], // top
 			[4,5,6], // bottom
@@ -25,7 +25,7 @@ module DisplayQuadShards( outer, inner, edgefaces=[true, true, true, true] )
 			points=[
 				outer[0], outer[1],outer[2], outer[3], // Top
 				inner[0], inner[1], inner[2], inner[3]], // Bottom
-			triangles=[
+			faces=[
 				[0,5,4],
 				[0,1,5],
 				]); 
@@ -38,7 +38,7 @@ module DisplayQuadShards( outer, inner, edgefaces=[true, true, true, true] )
 			points=[
 				outer[0], outer[1],outer[2], outer[3], // Top
 				inner[0], inner[1], inner[2], inner[3]], // Bottom
-			triangles=[
+			faces=[
 				[1,6,5],
 				[1,2,6],
 			]); 
@@ -51,7 +51,7 @@ module DisplayQuadShards( outer, inner, edgefaces=[true, true, true, true] )
 			points=[
 				outer[0], outer[1],outer[2], outer[3], // Top
 				inner[0], inner[1], inner[2], inner[3]], // Bottom
-			triangles=[
+			faces=[
 				[2,7,6],
 				[2,3,7],
 			]); 
@@ -64,7 +64,7 @@ module DisplayQuadShards( outer, inner, edgefaces=[true, true, true, true] )
 			points=[
 				outer[0], outer[1],outer[2], outer[3], // Top
 				inner[0], inner[1], inner[2], inner[3]], // Bottom
-			triangles=[
+			faces=[
 				[3,4,7],
 				[3,0,4],
 		]); 
@@ -117,8 +117,8 @@ module shell_extrude_height_map(size, resolution, sfactor=1, heightmap=checker_i
 
 	for (ycnt =[0:yiter-1])
 	{
-		assign(y1frac = ycnt/yiter)
-		assign(y2frac = (ycnt+1)/yiter)
+		y1frac = ycnt/yiter;
+		y2frac = (ycnt+1)/yiter;
 		for(xcnt=[0:xiter-1])
 		{
 			assign(x1frac = xcnt/xiter)
@@ -145,18 +145,22 @@ module shell_extrude_height_map(size, resolution, sfactor=1, heightmap=checker_i
 				//color(qcolor)
 				if (solid)
 				{
-					assign(nquad = [quad, 
-					[[0,0,1], 
-					[0,0,1],
-					[0,0,1],
-					[0,0,1]]])
+					nquad = [
+						quad, 
+						[
+							[0,0,1], 
+							[0,0,1],
+							[0,0,1],
+							[0,0,1]
+						]
+					];
 					DisplayQuadShard(nquad, 
-					thickness=base, 
-					edgefaces=[
-					xcnt==0, 
-					ycnt==yiter-1, 
-					xcnt==xiter-1, 
-					ycnt==0]);
+						thickness=base, 
+						edgefaces=[
+						xcnt==0, 
+						ycnt==yiter-1, 
+						xcnt==xiter-1, 
+						ycnt==0]);
 				} else
 				{
 					polyhedron(points = quad, faces = [[0,1,2,3]]);
@@ -244,7 +248,7 @@ module shell_extrude_color_map(size, resolution, sfactor=1, heightmap=checker_im
 						ycnt==0]);
 				} else
 				{
-					polyhedron(points = quad, triangles = [[0,1,2,3]]);
+					polyhedron(points = quad, faces = [[0,1,2,3]]);
 				}
 			}
 		}

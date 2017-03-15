@@ -15,7 +15,7 @@ I modified from the original file to conform to a
 height map format.
 */
 
-include <imaging.scad> 
+include <../waolib/imaging.scad> 
 
 C0 = image(width=8,height=8,maxvalue=1, values=
 			[

@@ -1,5 +1,5 @@
-include <imaging.scad>
-include <Mesh_Renderer.scad>
+include <../waolib/imaging.scad>
+include <../waolib/Mesh_Renderer.scad>
 
 //include <tetra_80_60.scad>
 //include <tetra_160_120.scad>
